@@ -1,0 +1,264 @@
+{% extends "layout.html" %}
+{% block content %}
+{% if userInfo %}
+<div style="padding:15px;text-align:center;">
+    <img src="{{ userInfo.Profile_Image_Url }}" class="rounded-circle" width="175" height="175">
+</div>
+{% endif %}
+<div class=" row" style="width:1100px; margin-left:0px;">
+    <div class="content-section col-lg-10">
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">User Information</legend>
+            <div class="form-group ">
+                {% if userInfo %}
+                <div class="row ">
+                    <div class="col-lg-3 border">Screen Name: </div>
+                    <div class="col-lg">{{ userInfo.Screen_Name }}</div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-3 border">Name: </div>
+                    <div class="col-lg">{{ userInfo.Name }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 border">Description:</div>
+                    <div class="col-lg"> {{ userInfo.Description }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 border">Number of followers: </div>
+                    <div class="col-lg">{{ userInfo.followers_count }}</div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-3 border">Number of friends: </div>
+                    <div class="col-lg">{{ userInfo.friends_count }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 border">Number of tweets:</div>
+                    <div class="col-lg">{{ userInfo.statuses_count }}</div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-3 border">Number of favourites: </div>
+                    <div class="col-lg">{{ userInfo.favourites_count }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 border">Link:</div>
+                    <div class="col-lg"><a
+                            href="https://twitter.com/{{userInfo.Screen_Name}}">https://twitter.com/{{userInfo.Screen_Name}}</a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </fieldset>
+    </div>
+    <div class="col-xl-2">
+        <br><br>
+        <canvas id="mycanvas" width="256" height="256"></canvas>
+    </div>
+</div>
+
+<div class="row" style="width:1000px">
+    {% if genuineInfo %}
+    {% for userInfo in genuineInfo %}
+    <div class="col-lg" style="padding:15px;text-align:center;">
+        <img src="{{ userInfo.Profile_Image_Url}}" class="rounded-circle" width="175" height="175">
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<div class="content-section border-success" style="width:1100px">
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Real Followers Information</legend>
+        <div class="row">
+            {% if genuineInfo %}
+            {% for userInfo in genuineInfo %}
+            <div class="form-group col-xl-6">
+                <div class="row">
+                    <div class="col-lg-3 border">Screen Name: </div>
+                    <div class="col-lg">{{ userInfo.Screen_Name }}</div>
+                    <div class="col-lg-3 border">Name: </div>
+                    <div class="col-lg">{{ userInfo.Name }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 border">Description:</div>
+                    <div class="col-lg"> {{ userInfo.Description }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 border">Number of followers: </div>
+                    <div class="col-lg">{{ userInfo.followers_count }}</div>
+                    <div class="col-lg-3 border">Number of friends: </div>
+                    <div class="col-lg">{{ userInfo.friends_count }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 border">Number of tweets:</div>
+                    <div class="col-lg">{{ userInfo.statuses_count }}</div>
+                    <div class="col-lg-3 border">Number of favourites: </div>
+                    <div class="col-lg">{{ userInfo.favourites_count }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 border">Link:</div>
+                    <div class="col-lg"><a
+                            href="https://twitter.com/{{userInfo.Screen_Name}}">https://twitter.com/{{userInfo.Screen_Name}}</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </fieldset>
+</div>
+
+<div class="row" style="width:1000px">
+    {% if suspiciousInfo %}
+    {% for userInfo in suspiciousInfo %}
+    <div class="col-lg" style="padding:15px;text-align:center;">
+        <img src="{{ userInfo.Profile_Image_Url}}" class="rounded-circle" width="175" height="175">
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+<div class="content-section border-warning" style="width:1100px">
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Suspicious Followers Information</legend>
+        <div class="row">
+            {% if suspiciousInfo %}
+            {% for userInfo in suspiciousInfo %}
+            <div class="form-group col-xl-6">
+                <div class="row">
+                    <div class="col-lg-3 border">Screen Name: </div>
+                    <div class="col-lg">{{ userInfo.Screen_Name }}</div>
+                    <div class="col-lg-3 border">Name: </div>
+                    <div class="col-lg">{{ userInfo.Name }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 border">Description:</div>
+                    <div class="col-lg"> {{ userInfo.Description }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 border">Number of followers: </div>
+                    <div class="col-lg">{{ userInfo.followers_count }}</div>
+                    <div class="col-lg-3 border">Number of friends: </div>
+                    <div class="col-lg">{{ userInfo.friends_count }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 border">Number of tweets:</div>
+                    <div class="col-lg">{{ userInfo.statuses_count }}</div>
+                    <div class="col-lg-3 border">Number of favourites: </div>
+                    <div class="col-lg">{{ userInfo.favourites_count }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 border">Link:</div>
+                    <div class="col-lg"><a
+                            href="https://twitter.com/{{userInfo.Screen_Name}}">https://twitter.com/{{userInfo.Screen_Name}}</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </fieldset>
+</div>
+
+<div class="row" style="width:1000px">
+    {% if botsInfo %}
+    {% for userInfo in botsInfo %}
+    <div class="col-lg" style="padding:15px;text-align:center;">
+        <img src="{{ userInfo.Profile_Image_Url}}" class="rounded-circle" width="175" height="175">
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+<div class="content-section border-danger" style="width:1100px">
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Bots Followers Information</legend>
+        <div class="row">
+            {% if suspiciousInfo %}
+            {% for userInfo in botsInfo %}
+            <div class="form-group col-xl-6">
+                <div class="row">
+                    <div class="col-lg-3 border">Screen Name: </div>
+                    <div class="col-lg">{{ userInfo.Screen_Name }}</div>
+                    <div class="col-lg-3 border">Name: </div>
+                    <div class="col-lg">{{ userInfo.Name }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 border">Description:</div>
+                    <div class="col-lg"> {{ userInfo.Description }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 border">Number of followers: </div>
+                    <div class="col-lg">{{ userInfo.followers_count }}</div>
+                    <div class="col-lg-3 border">Number of friends: </div>
+                    <div class="col-lg">{{ userInfo.friends_count }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 border">Number of tweets:</div>
+                    <div class="col-lg">{{ userInfo.statuses_count }}</div>
+                    <div class="col-lg-3 border">Number of favourites: </div>
+                    <div class="col-lg">{{ userInfo.favourites_count }}</div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-3 border">Link:</div>
+                    <div class="col-lg"><a
+                            href="https://twitter.com/{{userInfo.Screen_Name}}">https://twitter.com/{{userInfo.Screen_Name}}</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </fieldset>
+</div>
+
+
+{% endblock content %}
+
+{% block javascript %}
+
+<!-- Pie Chart code starts here -->
+<script>
+    $(document).ready(function () {
+        var ctx = $("#mycanvas").get(0).getContext("2d");
+
+        //pie chart data
+        //sum of values = 360
+        var data = [
+            {
+                value: {{ percentagesInfo.genuine }},
+        color: "yellowgreen",
+        highlight: "yellowgreen",
+        label: "Real Followers"
+            },
+        {
+            value: {{ percentagesInfo.suspicious }},
+        color: "darkorange",
+        highlight: "darkorange",
+        label: "Doubtful Followers"
+            },
+        {
+            value: {{ percentagesInfo.bots }},
+        color: "red",
+        highlight: "red",
+        label: "Fake Followers"
+            }
+
+        ];
+
+    //draw
+    var piechart = new Chart(ctx).Pie(data);
+    });
+</script>
+<!-- Pie Chart code ends here -->
+{% endblock javascript%}

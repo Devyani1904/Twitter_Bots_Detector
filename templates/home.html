@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<div style="margin-top: 50px">
+    <div style="padding:15px;text-align:center;">
+        <img src="/static/botlogo.jpg" class="img-responsive" width="128" height="128">
+    </div>
+    <!--Form-->
+    <div class="container mt-3">
+        <form method="POST" action="">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">@</span>
+                </div>
+                {{ form.username(class="form-control form-control-lg") }}
+            </div>
+            <div style="padding:15px;text-align:center;">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
